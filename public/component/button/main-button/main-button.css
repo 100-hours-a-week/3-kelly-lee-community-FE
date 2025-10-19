@@ -1,0 +1,13 @@
+.main-button{
+    width: 350px;
+    height: 33px;
+    border-radius: 4px;
+    background-color: #7F6AEE;
+    border-color: transparent;
+    color: white;
+}
+
+.main-button:disabled {
+  background-color: #ACA0EB;
+  cursor: not-allowed;
+}

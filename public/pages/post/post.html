@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="post.css" />
+    <script type="module" src="post.js" defer></script>
+    <title>post</title>
+</head>
+<body>
+    <div id="header"></div>
+    <div class="post-container">
+        <div class="post-title-container">
+            <p class="post-title">__TITLE__</p>
+            <div class="title-sub-container">
+                <div class="post-info-container">
+                    <div class="profile-container">
+                        <div class="profile-image"></div>
+                        <p class="nickname">__NICKNAME__</p>
+                    </div>
+                    <p class="info" >__CREATED_AT__</p>
+                </div>
+                <div class="post-button-container">
+                    <button type="button" class="post-update-button" id="post-modify-button">수정</button>
+                    <button type="button" class="post-update-button" id="post-delete-button">삭제</button>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="post-content-container">
+            <div class="post-image"></div>
+            <p class="content">pneumonoultramicroscopicsilicovolcanoconiosispneumonoultramicroscopicsilicovolcanoconiosispneumonoultramicroscopicsilicovolcanoconiosispneumonoultramicroscopicsilicovolcanoconiosispneumonoultramicroscopicsilicovolcanoconiosispneumonoultramicroscopicsilicovolcanoconiosispneumonoultramicroscopicsilicovolcanoconiosispneumonoultramicroscopicsilicovolcanoconiosispneumonoultramicroscopicsilicovolcanoconiosispneumonoultramicroscopicsilicovolcanoconiosispneumonoultramicroscopicsilicovolcanoconiosispneumonoultramicroscopicsilicovolcanoconiosis</p>
+        </div>
+        <div class="post-count-container">
+            <div class="count-box" id="like">__LIKE_COUNT__<br>좋아요수</div>
+            <div class="count-box" id="view">__VIEW_COUNT__<br>조회수</div>
+            <div class="count-box" id="comment">__COMMENT_COUNT__<br>댓글</div>
+        </div>
+        <hr>
+        <div class="comment-input-box">
+            <textarea class="comment-text" placeholder="댓글을 남겨주세요"></textarea>
+            <hr>
+            <div id="comment-submit-button">댓글 등록</div>
+        </div>
+        <div class="comment-container">
+            <div id="comment-card"></div>
+        </div>
+    </div>   
+</body>
+</html>

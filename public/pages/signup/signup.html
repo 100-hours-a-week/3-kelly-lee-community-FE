@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="signup.css" />
+    <script type="module" src="/global/componentLoader.js" defer></script>
+    <script type="module" src="signup.js" defer></script>
+    <title>signup</title>
+</head>
+<body>
+    <div id="header"></div>
+    <div class="container">
+         <div id="signup-container">
+            <div id="signup-title">회원가입</div>
+            <div class="image-container">
+                <div id="image-container-title">
+                    <span class="signup-subtitle"> 프로필 사진</span>
+                    <br>
+                    <span class="helper-text">* helper text</span>
+                </div>
+
+                
+                <br>
+                <div class="profile-image-upload">
+                    <label for="profileImage" class="profile-label">
+                        <div class="profile-circle" id="profilePreview">
+                        <span class="plus">+</span>
+                        </div>
+                        <input type="file" id="profileImage" accept="image/*" hidden />                
+                    </label>
+                </div>
+            </div>
+            <div class="profile-upload">           
+                <div class="email" id="email"></div>
+                <br>
+                <div class="password" id="password"></div>
+                <br>
+                <div class="re-password" id="re-password"></div>
+                <br>
+                <div class="nickname" id="nickname"></div>
+                <br>
+            </div>
+            <div class="button-container">
+                <div id="signup-button"></div>
+                <br>
+                <div id="signin-button"></div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

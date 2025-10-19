@@ -1,0 +1,25 @@
+
+export function renderHeader({ back = false, profile = false, image = null } = {}) {
+
+  console.log(back+", "+profile);
+  if (back) {
+    const backBtn = document.getElementById("header-back-button");
+    backBtn.style.visibility = "visible"; 
+    backBtn.onclick = () => history.back();
+  }
+
+  if (profile) {
+    const profileImage = document.getElementById("header-profile-image");
+    profileImage.style.visibility = "visible";
+    if(image!=null){
+      const img = document.createElement("img");
+      img.src = "/assets/profile.png";
+      img.alt = "프로필";
+      img.addEventListener("click", () => {
+        window.location.href = "/pages/profile/profile.html";
+      });
+      profileImage.appendChild(img);
+    }
+    
+  }
+}

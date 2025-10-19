@@ -1,0 +1,66 @@
+.card{
+    background-color: white;
+    border-radius: 16px;
+}
+
+.title{
+    font-family: "Pretendard", sans-serif;    
+    font-weight: 700;
+    font-size: 24px;  
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 10px;
+}
+
+.info-container{
+    display: flex;
+    flex-direction: row;
+    padding-left: 20px;
+    padding-right: 20px;
+    justify-content: space-between;
+}
+
+.info-block{
+    padding-right: 10px;
+    
+}
+
+.statistics-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: stretch;
+}
+
+.statistics-block{
+    padding-right: 10px;
+    display: flex;
+    gap: 4px;
+}
+
+.info{
+    font-family: "Pretendard", sans-serif;    
+    font-weight: 400;
+    font-size: 14px;  
+}
+
+.profile-container{
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 10px;
+    display: flex;
+    flex-direction: row;
+}
+
+.profile-image {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: rgba(217, 217, 217, 1);
+  margin-right: 10px;
+}
+
+.nickname{
+    font-family: "Pretendard", sans-serif;    
+    font-weight: 700;
+    font-size: 15px;  
+}

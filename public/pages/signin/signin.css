@@ -1,0 +1,28 @@
+html, body {
+  height: 100%;
+  background-color: rgba(244, 245, 247, 1);
+}
+
+#login-container{
+    flex: 1;    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-self: center;
+    text-align: center;
+    height: 100%;
+    width: 100%;
+}
+
+#login-title{
+    font-family: "Pretendard", sans-serif;
+    font-weight: 700;
+    font-size: 32px; 
+}
+
+#login-box{  
+    justify-content: center;
+    text-align: start; 
+    width: 350px;
+    height: 198px;
+}

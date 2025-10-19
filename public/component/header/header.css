@@ -1,0 +1,45 @@
+#main-header{
+    justify-items: center;
+    width: 100%;
+    border-bottom: 1px solid #ccc;
+}
+
+.header-container{
+    /* flex:1; */
+    display: flex;
+    flex-direction: row;
+    align-items:center;
+    justify-content: space-between;
+    width: 600px;
+}
+
+.header{
+    font-family: "Sandoll GogoRound 03 Rg", sans-serif;
+    font-weight: 400;
+    font-size: 32px;
+    text-align: center;
+}
+
+
+#back-button{
+    visibility: hidden;
+    left: 16px;
+    background: none;
+    border: none;
+    font-size: 24px;
+}
+
+#header-profile-image {
+    visibility: hidden;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: rgba(217, 217, 217, 1);
+}
+
+.profile-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;  
+}

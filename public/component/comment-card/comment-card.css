@@ -1,0 +1,25 @@
+comment-card{
+    margin: 10px;
+}
+
+.comment-update-button{
+    border-radius: 5px;
+    border-color: rgba(172, 160, 235, 1);
+    background-color: white;
+}
+
+.comment-title-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.comment-info-container{
+    display: flex;
+    flex-direction: row;
+    gap: 6px;
+}
+
+.content{
+    text-align: start;
+}

@@ -1,0 +1,144 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.post-container{
+    flex: 1;
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    align-self: center;
+    text-align: center;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    height: 100%;
+    width: 100%;
+    
+}
+
+.post-title-container{
+    width: 600px;
+    text-align: start;
+}
+
+.post-title{
+    font-family: "Pretendard", sans-serif;
+    font-weight: 700;
+    font-size: 24px; 
+}
+
+.title-sub-container{
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: space-between;
+}
+
+.post-info-container{
+    display: flex;
+    flex-direction: row;
+}
+
+.profile-container{
+    display: flex;
+    flex-direction: row;
+    padding-right: 20px;
+}
+
+.profile-image {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: rgba(217, 217, 217, 1);
+  margin-right: 10px;
+}
+
+.nickname{
+    font-family: "Pretendard", sans-serif;
+    font-weight: 700;
+    font-size: 15px; 
+}
+
+.info{
+    font-family: "Pretendard", sans-serif;
+    font-weight: 400;
+    font-size: 14px; 
+}
+
+.post-update-button{
+    border-radius: 5px;
+    border-color: rgba(172, 160, 235, 1);
+    background-color: white;
+}
+
+.post-content-container{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    align-items: center; 
+    width: 600px;
+}
+
+.post-image{
+    width: 554px;
+    height: 306px;
+    background-color: rgba(217, 217, 217, 1);
+}
+
+.content{
+    font-family: "Pretendard", sans-serif;
+    font-weight: 400;
+    font-size: 15px;
+    word-break: break-all;
+    overflow-wrap: break-word;
+    white-space: normal; 
+    width: 554px;
+}
+
+.post-count-container{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.count-box{
+    display: flex;
+    width: 116px;
+    height: 77px;
+    border-radius: 12px;
+    background-color: rgba(217, 217, 217, 1);
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.comment-input-box{
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  background: white;
+  border: 2px solid lightgray;
+  border-radius: 8px;
+  padding: 12px;
+  box-sizing: border-box;
+  width: 600px;
+  gap: 10px;
+}
+
+.comment-text{
+  flex: 1;
+  height: 100px;
+  border: none;
+  resize: none;
+  outline: none;
+  width: 100%;
+}
+
+.content{
+    text-align: start;
+}

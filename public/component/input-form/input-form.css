@@ -1,0 +1,18 @@
+label{
+    font-family: "Pretendard", sans-serif;
+    font-weight: 700;
+    font-size: 15px; 
+}
+
+.helper-text {
+  color: #ff6b6b;
+  font-size: 13px;
+  margin: 4px 0 0 0;
+}
+
+input{
+  padding-left: 5px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  width: 100%;
+}
