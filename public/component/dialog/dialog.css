@@ -7,8 +7,18 @@ dialog{
     justify-content: center;
 }
 
+dialog::backdrop {
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(1px);
+  z-index: 1000;
+}
+
+
 .dialog-container{
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .dialog-title{
@@ -23,7 +33,7 @@ dialog{
     font-size: 20px; 
 }
 
-.button-container{
+.dialog-button-container{
     width: 50%;
     display: flex;
     flex-direction: row;
