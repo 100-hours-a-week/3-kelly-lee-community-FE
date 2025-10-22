@@ -7,7 +7,6 @@ let lastSeenId = null;
 let fetchComplete = false;
 
 document.addEventListener("DOMContentLoaded", async () => {
-  
   //header
   await componentLoader("header","/component/header/header", true, true, null);
   renderHeader({ back: false, profile: true });
@@ -20,6 +19,12 @@ document.addEventListener("DOMContentLoaded", async () => {
   await fetchPosts();
 
   addEventListenerToScroll();  
+
+  window.addEventListener("pageshow", (event) => {
+    if (event.persisted) {
+      window.location.reload();
+    }
+  });
 });
 
 function addEventListenerToPostButton(){

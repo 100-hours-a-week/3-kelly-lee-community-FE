@@ -14,8 +14,8 @@ export const commentApi = {
         return api(url, {method: "GET"});
     },
 
-    postComment: (data) => {
-        let url = `${basePostUrl}${data.postId}${baseCommentUrl}`;
+    postComment: (postId, data) => {
+        let url = `${basePostUrl}${postId}${baseCommentUrl}`;
         api(url, {
         method: "POST",
         body: JSON.stringify(data)})
