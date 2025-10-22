@@ -14,22 +14,25 @@
             <p class="page-title">게시글 작성</p>
             <div class="input-container">
                 <p class="sub-title">제목*</p>
-                <textarea class="text-area" id="title-text" placeholder="제목을 입력해주세요. (최대 26글자)"></textarea>
+                <input class="text-area" id="title-text" placeholder="제목을 입력해주세요. (최대 26글자)" type="text"></input>
+                <span class="helper-text" id="title-helper-text" style="visibility: visible;">*제목을 입력해주세요.</span>
             </div>
             <div class="input-container">
                 <p class="sub-title">내용*</p>
-                <textarea class="text-area" id="content-text" style="min-height: 200px;" placeholder="내용을 입력해주세요."></textarea>
+                <textarea class="text-area" id="content-text" style="min-height: 200px;" placeholder="내용을 입력해주세요." type="text"></textarea>
+                <span class="helper-text" id="content-helper-text">*내용을 입력해주세요.</span>
             </div>
              <div class="input-container">
                 <p class="sub-title">이미지</p>
                 <div class="image-button-container">
-                    <button>파일 선택</button>
-                    <p>파일을 선택해주세요.</p>
+                    <label for="file-input" class="file-label">파일 선택</label>
+                    <input type="file" id="file-input" hidden />
+                    <p id="file-name">파일을 선택해주세요.</p>
                 </div>
                 
             </div>
         </div>
-        <div id="complete-button"></div>
+        <div id="submit-button" ></div>
     </div>
 </body>
 </html>

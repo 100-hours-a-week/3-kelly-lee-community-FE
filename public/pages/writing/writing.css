@@ -42,8 +42,9 @@ html, body {
 
 .text-area{
     width: 100%;
-    height: auto;
     display: flex;
+    overflow-y: auto;
+    resize: none;
     align-items: flex-start;
     flex-direction: column;
     background: white;
@@ -54,8 +55,37 @@ html, body {
     gap: 10px;    
 }
 
-.image-button-container{
-    display: flex;
-    flex-direction: row;
-    gap: 4px;
+
+.image-button-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.file-label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  background-color: lightgrey;
+  font-size: 14px;
+  font-family: "Pretendard", sans-serif;
+}
+
+#file-name {
+  font-family: "Pretendard", sans-serif;
+  font-size: 14px;
+  color: #444;
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.helper-text {
+  color: #ff6b6b;
+  font-size: 13px;
+  margin: 4px 0 0 0;
 }
