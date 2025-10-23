@@ -1,5 +1,5 @@
 .round-button{
-    background-color: #ACA0EB;
+    background-color: #7F6AEE; 
     color: white;
     width: 138px;
     height: 39px;
@@ -8,6 +8,10 @@
     border-color: transparent;   
 }
 
+.round-button:disabled{
+    background-color: #ACA0EB;
+}
+
 .round-button:hover{
-    background-color: #7F6AEE;
+    background-color: #6951e4;
 }
