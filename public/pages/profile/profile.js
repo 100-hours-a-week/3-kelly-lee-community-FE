@@ -1,7 +1,7 @@
 import { componentLoader } from '/global/componentLoader.js';
 import { renderHeader } from "/component/header/header.js";
 import { memberApi } from '/api/member/memberApi.js';
-
+import { showToast } from '/global/toast.js';
 
 const memberId = localStorage.getItem("userId");
 
@@ -82,7 +82,6 @@ function addEventListenerToNickname(){
         nicknameHelperText.textContent = "";
         nicknameCheck = true;
       }else if(response.status === 409){
-        console.log("HELOO");
         nicknameHelperText.textContent = "중복된 닉네임입니다.";
         nicknameCheck = false;
       }else{
@@ -133,8 +132,7 @@ function addEventListenerToModifyButton(){
       if(!response.ok){
         alert("프로필 수정 실패");
       }
-      window.location.reload();
-
+      showToast("수정완료", false, true);
     }catch(e){
       alert("프로필 수정 실패");
     }
@@ -167,6 +165,7 @@ function addEventListenerToWithdrawalButton(){
           return;
         }
         
+        localStorage.clear();
       }catch(e){
         
       }finally{
