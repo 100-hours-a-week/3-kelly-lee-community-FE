@@ -1,5 +1,7 @@
+import { authApi } from "/api/auth/authApi.js";
 
-export function renderHeader({ back = false, profile = false, image = null } = {}) {
+export function renderHeader({ back = false, profile = false, image = "https://i.namu.wiki/i/n_jBz7bcTo4VFyasnau8sTBfhY8b1IqRAU59IbTaENBPYfb0HqVTiAGoxkmZ4byR6LSczPivVUecrUZf_5E8pMtlbI2Sk24fvTx2aXQtfxPYFk7FwEJzBasRBwYqwjrAUvTtukMO_dJydgRleBQllQ.webp"
+} = {}) {
 
   if (back) {
     const backBtn = document.getElementById("header-back-button");
@@ -8,35 +10,33 @@ export function renderHeader({ back = false, profile = false, image = null } = {
   }
 
   if (profile) {
-    const profileImage = document.getElementById("header-profile-image");
-    profileImage.style.visibility = "visible";
-    if(image!=null){
-      const img = document.createElement("img");
-      img.src = "/assets/profile.png";
-      img.alt = "프로필";
-      img.addEventListener("click", () => {
-        window.location.href = "/pages/profile/profile.html";
-      });
-      profileImage.appendChild(img);
-    }
+    const profileWrapper = document.getElementById("profile-wrapper");
+    profileWrapper.style.visibility = "visible";
+    
+    const profileBtn = document.getElementById("header-profile-image");
+    profileBtn.addEventListener("click", () => {
+      const profileMenu = document.getElementById("profile-menu");
+      profileMenu.classList.toggle("hidden");
+    });
+
     renderHeaderProfile();
   }
 }
 
-
 export function renderHeaderProfile(){
-  const profileBtn = document.getElementById("header-profile-image");
+  const profileBtn = document.getElementById("profile-button");
   const profileMenu = document.getElementById("profile-menu");
 
   profileBtn.addEventListener("click", () => {
-    profileMenu.classList.toggle("hidden");
+    console.log("click");
+    profileMenu.classList.toggle("show");
   });
 
-  document.addEventListener("click", (event) => {
-    if (!profileBtn.contains(event.target) && !profileMenu.contains(event.target)) {
-      profileMenu.classList.add("hidden");
-    }
-  });
+  document.addEventListener("click", (e) => {
+    if (!profileBtn.contains(e.target)) {
+        profileMenu.classList.remove("show");
+      }
+    });
 
   const profileModifyBtn = document.getElementById("header-profile-modify-button");
   profileModifyBtn.addEventListener("click", () => {
@@ -49,9 +49,24 @@ export function renderHeaderProfile(){
   });
 
   const logoutBtn = document.getElementById("logout-button");
-  logoutBtn.addEventListener("click", (event) => {
-   
-  });
+  logoutBtn.addEventListener("click", async (event) => {
+    try{
+      const memberId = localStorage.getItem("userId");
+      const response = await authApi.logout(memberId);
 
+      if(!response){
+        alert("로그아웃 실패");
+        return;
+      }
+
+      localStorage.clear();
+      sessionStorage.clear();
+
+      window.location.replace("/pages/signin/signin.html");
+
+    }catch(e){
+
+    }
+  });
 
 }
