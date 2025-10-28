@@ -1,13 +1,29 @@
 .main-button{
-    width: 350px;
+    width: 100%;
+    max-width: 400px;
     height: 33px;
     border-radius: 4px;
-    background-color: #7F6AEE;
     border-color: transparent;
+    background-color: #2C3E50;
     color: white;
 }
 
 .main-button:disabled {
-  background-color: #ACA0EB;
+  background-color: #ccc;
   cursor: not-allowed;
 }
+
+
+.main-button button{
+  font-family: "Pretendard", sans-serif;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  width: 100%;
+  color: white;
+  font-weight: 600;
+  font-size: 15px;
+  padding: 12px 0;
+}
+

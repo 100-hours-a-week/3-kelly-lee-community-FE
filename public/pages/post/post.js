@@ -13,22 +13,24 @@ const postId = params.get('postId');
 
 let commentSubmitBtn;
 let comment;
-
+let likes;
 
 document.addEventListener("DOMContentLoaded", async () => {
   
   await componentLoader("header","/component/header/header", true, true, null);
   renderHeader({ back: true, profile: true });
 
+  likes = document.getElementById("post-like");
   await fetchPost();
 
   await componentLoader("comment-submit-button", "/component/button/round-button/round-button", true, false, {
     text: "댓글 등록"
   });
-  addEventListenerToComment();
-
   commentSubmitBtn = document.querySelector("#comment-submit-button round-button .round-button");
   comment = document.querySelector("#comment-text");
+  addEventListenerToComment();
+
+  
 
   await fetchComments();
   addEventListenerToOwnButtons();
@@ -174,26 +176,41 @@ async function fetchPost(){
     
     const posterNickname = document.getElementById("poster-nickname");
     posterNickname.innerText = result.poster.nickname;
-    
+
+    if (result.poster.imageUrl) {
+      document.querySelector("#post-profile-image").src = result.poster.imageUrl;      
+    }
+
     const createdAt = document.getElementById("post-created-at");
     createdAt.innerText = result.postBasic.createdAt;
     
     const content = document.getElementById("post-content");
     content.innerText = result.postBasic.contents;
 
+    
+    const postContentImage = document.getElementById("post-content-image");
+    if(result.postBasic.imageUrl == null){
+      postContentImage.hidden = true;
+    }else{
+
+      postContentImage.src = result.postBasic.imageUrl;
+    }
+
     //좋아요
     isLike = result.isLike;
 
-    const likes = document.getElementById("post-like");
-    likes.querySelector("#like-count").innerText = result.postCounter.likes;
+    likes.innerText = result.postCounter.likes;
 
-    if (isLike) likes.setAttribute("active", "");
-    else likes.removeAttribute("active");
+    const heartIcon = document.querySelector('img[alt="좋아요"]');
+    
 
-    const comments = document.getElementById("comment-count");
+    if (isLike) heartIcon.src = "../../assets/heart.png";
+    else heartIcon.src = "../../assets/empty-heart.png";
+
+    const comments = document.getElementById("post-comment");
     comments.innerText = result.postCounter.comments;
 
-    const views = document.getElementById("view-count");
+    const views = document.getElementById("post-view");
     views.innerText = result.postCounter.views;
     
     if(!result.poster.isMe){
@@ -207,7 +224,7 @@ async function fetchPost(){
   }
 
 
-  likes.addEventListener("click", async () =>{
+  document.querySelector("#like-box").addEventListener("click", async () =>{
 
     if(isLoading) return;
     isLoading = true;
@@ -324,6 +341,10 @@ async function renderComments(comments){
 
         }
       });
+    }
+
+    if (comment.poster.imageUrl) {
+      wrapper.querySelector("#comment-profile-image").src = comment.poster.imageUrl;
     }
 
     wrapper.dataset.commentId = comment.commentBasic.commentId;

@@ -1,8 +1,12 @@
 html, body {
   height: 100%;
-  margin: 0;
-  padding: 0;
-  background-color: rgba(244, 245, 247, 1);
+  width: 100%;
+}
+
+header{
+  width: 100%;
+  justify-self: center;
+  align-items: center;
 }
 
 .container{
@@ -13,7 +17,6 @@ html, body {
 }
 
 .writing-container{
-    display: flex;
     flex-direction: column;
     width: 100%;
     align-items: center;
@@ -23,7 +26,7 @@ html, body {
 .page-title{
     font-family: "Pretendard", sans-serif;    
     font-weight: 700;
-    font-size: 24px;  
+    font-size: 28px;  
     text-align: center;
 }
 
@@ -31,6 +34,7 @@ html, body {
     display: flex;
     flex-direction: column;
     width: 100%;
+    margin-bottom: 10px;
 }
 
 .sub-title{
@@ -57,7 +61,7 @@ html, body {
 
 .image-button-container {
   display: flex;
-  align-items: center;
+  align-items: end;
   gap: 8px;
 }
 
@@ -87,4 +91,17 @@ html, body {
   color: #ff6b6b;
   font-size: 13px;
   margin: 4px 0 0 0;
+}
+
+.post-image{
+  max-width: 100px;
+  min-width: 100px;
+  border: 1px solid lightgray;
+
+}
+
+.image-input-box{
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
 }

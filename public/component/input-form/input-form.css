@@ -1,24 +1,40 @@
 label{
   font-family: "Pretendard", sans-serif;
-  font-weight: 700;
-  font-size: 15px; 
+  font-weight: 500;
+  font-size: 13px; 
 }
 
 .input-field{
   display: flex;
   flex-direction: column;
+  gap: 4px;
 }
 
-input{
-  padding-left: 5px;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  width: 100%;
-  max-width: 350px;
-}
 
 .helper-text {
   color: #ff6b6b;
-  font-size: 13px;
+  font-size: 12px;
   margin: 4px 0 0 0;
+}
+
+.input-field input {
+  width: 100%;
+  padding: 0 12px;
+  line-height: 42px;
+  font-family: "Pretendard", sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  border: 1px solid #d0d4d9;
+  border-radius: 8px;
+  outline: none;
+  box-sizing: border-box;
+  background-color: #fff;
+
+  box-shadow: inset 0 0 0 0 transparent;
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.input-field input.valid{
+  border: 1px solid #4CAF50;
+  box-shadow: 0 0 4px rgba(76, 175, 80, 0.3);
 }

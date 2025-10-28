@@ -1,6 +1,8 @@
 import { componentLoader } from '/global/componentLoader.js';
 import { renderHeader } from "/component/header/header.js";
 import { memberApi } from '/api/member/memberApi.js';
+import { imageApi } from '/api/image/imageApi.js';
+
 import { showToast } from '/global/toast.js';
 
 const memberId = localStorage.getItem("userId");
@@ -51,6 +53,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   addEventListenerToWithdrawalButton();
   addEventListenerToNickname();
   addEventListenerToModifyButton();
+  updateProfileImage();
 });
 
 async function loadProfile() {
@@ -60,11 +63,61 @@ async function loadProfile() {
 
     email.textContent = currentProfile.email || "";
     nickname.defaultValue = currentProfile.nickname || "";
+    
+
+    const profilePreview = document.getElementById("profilePreview");
+    
+    profilePreview.style.backgroundImage = `url(${currentProfile.imageUrl})`;
+    profilePreview.style.backgroundSize = "cover";
+    profilePreview.style.backgroundPosition = "center";
+    profilePreview.innerHTML = "";     
 
   } catch (error) {
     alert("회원 정보를 불러오지 못했습니다.");
   }
 }
+
+function updateProfileImage(){
+
+  const profileImageInput = document.getElementById("profileImage");
+  const profilePreview = document.getElementById("profilePreview");
+
+  profileImageInput.addEventListener("change", async (event) => {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    const formData = new FormData();
+    const json = JSON.stringify({ type: "profile" });
+    formData.append("file", file);
+    formData.append("imageRequest", new Blob([json], { type: "application/json" }));    
+
+    try {
+      const response = await imageApi.postImage(formData);
+
+      if (!response.ok) {
+        showToast("이미지 업로드 실패", false, true);
+        return;
+      }
+
+      const result = await response.json();
+      currentProfile.imageUrl = result.imageUrl;
+      modifyBtn.disabled = false;
+      
+       const reader = new FileReader();
+        reader.onload = (e) => {
+          profilePreview.style.backgroundImage = `url(${currentProfile.imageUrl})`;
+          profilePreview.style.backgroundSize = "cover";
+          profilePreview.style.backgroundPosition = "center";
+          profilePreview.innerHTML = ""; 
+        };
+      reader.readAsDataURL(file);
+
+    } catch (error) {
+      showToast("이미지 업로드 실패", false, true);
+    }
+  });
+}
+
 
 function addEventListenerToNickname(){
 
@@ -81,12 +134,15 @@ function addEventListenerToNickname(){
       if(response.ok){
         nicknameHelperText.textContent = "";
         nicknameCheck = true;
+        nickname.classList.add("valid");    
       }else if(response.status === 409){
         nicknameHelperText.textContent = "중복된 닉네임입니다.";
         nicknameCheck = false;
+        nickname.classList.remove("valid"); 
       }else{
         nicknameHelperText.textContent = "잘못된 닉네임 형식입니다.";
         nicknameCheck = false;
+        nickname.classList.remove("valid"); 
       }
     }catch(e){
       alert("닉네임 설정 실패");
@@ -127,7 +183,7 @@ function addEventListenerToModifyButton(){
     try{
       const response = await memberApi.patchMemberProfile(
         memberId, 
-        {nickname: nickname.value, imageUrl: null });
+        {nickname: nickname.value, imageUrl: currentProfile.imageUrl });
 
       if(!response.ok){
         alert("프로필 수정 실패");

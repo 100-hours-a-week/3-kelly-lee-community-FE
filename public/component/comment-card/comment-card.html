@@ -1,14 +1,15 @@
 <comment-card>
     <div class="comment-title-container">
         <div class="comment-info-container">   
-            <div class="profile-image"></div>
+            <img src="" alt="프로필" class="profile-image" id="comment-profile-image">
             <p class="nickname">__NICKNAME__</p>
-            <p class="info" >__CREATED_AT__</p>
         </div>
-        <div class="comment-button-container">   
-            <button type="button" class="comment-update-button" id="comment-modify-button">수정</button>
-            <button type="button" class="comment-update-button" id="comment-delete-button">삭제</button>
-        </div>
+        
     </div>
     <p class="comment-contents">__CONTENTS__</p>
+    <p class="info" id="comment-created-at">__CREATED_AT__</p>
+    <div class="comment-button-container">   
+        <button type="button" class="comment-update-button" id="comment-modify-button">수정</button>
+        <button type="button" class="comment-update-button" id="comment-delete-button">삭제</button>
+    </div>
 </comment-card>

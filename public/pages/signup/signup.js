@@ -2,7 +2,18 @@
 import { componentLoader } from '/global/componentLoader.js';
 import { renderHeader } from "/component/header/header.js";
 import { memberApi } from '/api/member/memberApi.js';
+import { imageApi } from '/api/image/imageApi.js';
+import { showToast } from '/global/toast.js';
 
+let email;
+let emailHelperText;
+let password;
+let passwordHelperText;
+let rePassword;
+let rePasswordHelperText;
+let nickname;
+let nicknameHelperText;
+let profileImageFile = null;
 let emailCheck = false;
 let passwordCheck = false;
 let nicknameCheck = false;
@@ -11,7 +22,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   
   //header
   await componentLoader("header","/component/header/header", true, true, null);
-  renderHeader({ back: true, profile: false });
+  renderHeader({ back: false, profile: false, title: false });
   
   //button
   await componentLoader("signup-button", "/component/button/main-button/main-button", true, false, {
@@ -30,8 +41,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     label: "이메일*",
     type: "email",
     placeholder: "이메일을 입력하세요.",
-    helper: "*이메일을 입력하세요.",
+    helper: "* 이메일을 입력하세요.",
   });
+
   addEventListenerToEmail();
 
   //password
@@ -40,7 +52,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     label: "비밀번호*",
     type: "password",
     placeholder: "비밀번호를 입력하세요.",
-    helper: "*비밀번호를 입력하세요.",
+    helper: "* 비밀번호는 8자 이상, 20자 이하이며, 대문자, 소문자, 숫자, 특수문자를 각각 최소 1개 포함해야합니다.",
   });
   
   await componentLoader("re-password", "/component/input-form/input-form", true, false,{
@@ -48,7 +60,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     label: "비밀번호 확인*",
     type: "re-password",
     placeholder: "비밀번호를 한번 더 입력하세요.",
-    helper: "*비밀번호를 한번 더 입력하세요.",
+    helper: "* 비밀번호를 한번 더 입력하세요.",
   });
   addEventListenerToPassword();
 
@@ -58,9 +70,10 @@ document.addEventListener("DOMContentLoaded", async () => {
     label: "닉네임*",
     type: "nickname",
     placeholder: "닉네임을 입력하세요.",
-    helper: "*닉네임을 입력하세요.",
+    helper: "* 닉네임을 입력하세요.",
   });
   addEventListenerToNickname();
+  updateProfileImage();
 
 });
 
@@ -76,11 +89,12 @@ function addEventListenerToSignUpButton(){
       const nickname = document.querySelector("#nickname input");
       const password = document.querySelector("#password input");
 
+      console.log(profileImageFile);
       const response = await memberApi.signup({
         email: email.value,
         nickname: nickname.value,
         password: password.value,
-        profileImage: null
+        imageUrl: profileImageFile
       });
 
       if(!response.ok){
@@ -109,8 +123,8 @@ function addEventListenerToSigninButton(){
 
 const emailPattern = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-za-z0-9\-]+/;
 function addEventListenerToEmail(){
-  const email = document.querySelector("#email input");
-  const emailHelperText = document.querySelector("#email .helper-text");
+  email = document.querySelector("#email input");
+  emailHelperText = document.querySelector("#email .helper-text");
 
   email.addEventListener("change", async () => {
     if(email.value == null){
@@ -127,6 +141,7 @@ function addEventListenerToEmail(){
   
     try{
       const response = await memberApi.emailValidation(email.value);
+    
       if(response.ok){
         emailHelperText.textContent = "";
         emailCheckToTrue();
@@ -145,20 +160,20 @@ function addEventListenerToEmail(){
 
 const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>])[A-Za-z\d!@#$%^&*(),.?":{}|<>]{8,20}$/;
 function addEventListenerToPassword(){
-  const password = document.querySelector("#password input");
-  const passwordHelperText = document.querySelector("#password .helper-text");
-  const rePassword = document.querySelector("#re-password input");
-  const rePasswordHelperText = document.querySelector("#re-password .helper-text");
+  password = document.querySelector("#password input");
+  passwordHelperText = document.querySelector("#password .helper-text");
+  rePassword = document.querySelector("#re-password input");
+  rePasswordHelperText = document.querySelector("#re-password .helper-text");
 
   password.addEventListener("input", () => {
 
     if(password.value === null){
-      passwordHelperText.textContent = "비밀번호를 입력해주세요";
+      passwordHelperText.textContent = "* 비밀번호는 8자 이상, 20자 이하이며, 대문자, 소문자, 숫자, 특수문자를 각각 최소 1개 포함해야합니다.";
       passwordToFalse();
       return;
     }
     if(!passwordPattern.test(password.value)){
-      passwordHelperText.textContent = "*비밀번호는 8자 이상, 20자 이하이며, 대문자, 소문자, 숫자, 특수문자를 각각 최소 1개 포함해야합니다.";
+      passwordHelperText.textContent = "* 비밀번호는 8자 이상, 20자 이하이며, 대문자, 소문자, 숫자, 특수문자를 각각 최소 1개 포함해야합니다.";
       passwordToFalse();
       return;
     }
@@ -194,8 +209,8 @@ function addEventListenerToPassword(){
 }
 
 function addEventListenerToNickname(){
-  const nickname = document.querySelector("#nickname input");
-  const nicknameHelperText = document.querySelector("#nickname .helper-text");
+  nickname = document.querySelector("#nickname input");
+  nicknameHelperText = document.querySelector("#nickname .helper-text");
 
   nickname.addEventListener("input", async () => {
     if(!checkNickname(nickname, nicknameHelperText)){
@@ -221,7 +236,7 @@ function addEventListenerToNickname(){
   });
 }
 
-function checkNickname(nickname, nicknameHelperText){
+function checkNickname(){
   if(nickname.value == null){
     nicknameHelperText.textContent = "닉네임을 입력하세요.";
     return false;
@@ -237,31 +252,39 @@ function checkNickname(nickname, nicknameHelperText){
 
 function emailCheckToFalse(){
   emailCheck = false;
+  email.classList.remove("valid");
   updateSignupButtonState();
 }
 
 function emailCheckToTrue(){
   emailCheck = true;
+  email.classList.add("valid");
   updateSignupButtonState();
 }
 
 function passwordToFalse(){
   passwordCheck = false;
+  password.classList.remove("valid");
+  rePassword.classList.remove("valid");
   updateSignupButtonState();
 }
 
 function passwordToTrue(){
   passwordCheck = true;
+  password.classList.add("valid");
+  rePassword.classList.add("valid");
   updateSignupButtonState();
 }
 
 function nicknameCheckToFalse(){
   nicknameCheck = false;
+  nickname.classList.remove("valid");
   updateSignupButtonState();
 }
 
 function nicknameCheckToTrue(){
   nicknameCheck = true;
+  nickname.classList.add("valid");
   updateSignupButtonState();
 }
 
@@ -275,4 +298,48 @@ function updateSignupButtonState() {
   } else {
     signup.disabled = true;
   }
+}
+
+function updateProfileImage(){
+
+  const profileImageInput = document.getElementById("profileImage");
+  const profilePreview = document.getElementById("profilePreview");
+
+  profileImageInput.addEventListener("change", async (event) => {
+    const file = event.target.files[0];
+    if (!file) return;
+
+  
+    const formData = new FormData();
+    const json = JSON.stringify({ type: "profile" });
+    formData.append("file", file);
+    formData.append("imageRequest", new Blob([json], { type: "application/json" }));    
+
+    try {
+      const response = await imageApi.postImage(formData);
+
+      if (!response.ok) {
+        showToast("이미지 업로드 실패", false, true);
+        return;
+      }
+
+      const result = await response.json();
+      profileImageFile = result.imageUrl;
+      console.log(profileImageFile);
+
+      //이미지 업로드
+      const reader = new FileReader();
+      reader.onload = (e) => {
+          profilePreview.style.backgroundImage = `url(${profileImageFile})`;
+          profilePreview.style.backgroundSize = "cover";
+          profilePreview.style.backgroundPosition = "center";
+          profilePreview.innerHTML = ""; 
+        };
+      reader.readAsDataURL(file);
+
+
+    } catch (error) {
+      showToast("이미지 업로드 실패", false, true);
+    }
+  });
 }

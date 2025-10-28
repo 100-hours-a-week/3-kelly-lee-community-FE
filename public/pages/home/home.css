@@ -1,6 +1,12 @@
 html, body {
-height: 100%;
-  background-color: rgba(244, 245, 247, 1);
+  height: 100%;
+  width: 100%;
+}
+
+header{
+  width: 100%;
+  justify-self: center;
+  align-items: center;
 }
 
 .container{
@@ -8,6 +14,7 @@ height: 100%;
   max-width: 400px;
   align-self: center;
   justify-self: center;
+    position: relative;
 }
 
 .sub-title-container{
@@ -15,15 +22,25 @@ height: 100%;
   padding-bottom: 20px;
 }
 
-.highlight {
-  font-family: "Pretendard", sans-serif;    
-  font-weight: 700;
-  font-size: 24px;    
+.board-guide {
+  text-align: center;
+  font-family: "Pretendard", sans-serif;
+  color: #2C3E50;
+  margin: 25px 0 30px 0;
+  line-height: 1.6;
+}ㄴ
+
+.board-guide strong {
+  color: #2E8B77; 
+  font-weight: 600;
+  font-size: 16px;
+  display: block;
+  margin-bottom: 4px;
 }
 
-.sub-title{
-font-family: "Pretendard", sans-serif;    
-  font-weight: 400;
-  font-size: 24px;  
-  text-align: center;
+.float-button {
+  position: fixed;
+  bottom: 24px;
+  right: calc((100vw - min(100vw, 400px))/2) ;
+  z-index: 999;
 }

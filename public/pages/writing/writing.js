@@ -1,9 +1,12 @@
 import { componentLoader } from '/global/componentLoader.js';
 import { renderHeader } from "/component/header/header.js";
 import { postApi } from "/api/post/postApi.js";
+import { imageApi } from '/api/image/imageApi.js';
+import { showToast } from '/global/toast.js';
 
 let titleCheck = false;
 let contentCheck = false;
+let postImage = null;
 
 document.addEventListener("DOMContentLoaded", async () => {
   
@@ -27,6 +30,12 @@ document.addEventListener("DOMContentLoaded", async () => {
     postId = json.postBasic.id;
     title.defaultValue = json.postBasic.title;
     content.defaultValue = json.postBasic.contents;
+    postImage = json.postBasic.imageUrl;
+
+    const postImageDo = document.getElementById("post-image");
+    postImageDo.hidden = false;
+    postImageDo.src = postImage;
+
     titleCheckToTrue();
     contentCheckToTrue();
   }
@@ -34,6 +43,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   addEventListenerToTitleInput();
   addEventListenerToContentInput();
   addEventListenerToSubmitButton(isNew, postId);
+  updateImage();
 
 });
 
@@ -78,9 +88,9 @@ function addEventListenerToSubmitButton(isNew,postId){
       let response = null;
 
       if(isNew != "false"){
-        response = await postApi.postPost({title: title.value, contents: content.value, imageUrl: null});
+        response = await postApi.postPost({title: title.value, contents: content.value, imageUrl: postImage});
       }else{
-        response = await postApi.patchPost(postId, {title: title.value, contents: content.value, imageUrl: null}); 
+        response = await postApi.patchPost(postId, {title: title.value, contents: content.value, imageUrl: postImage}); 
       }
 
       if(!response.ok){
@@ -139,4 +149,38 @@ function changeSubmitButtonState(){
   }else{
     submitBtn.disabled = true;
   }
+}
+
+function updateImage(){
+
+  const postImageInput = document.getElementById("file-input");
+
+  postImageInput.addEventListener("change", async (event) => {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    const formData = new FormData();
+    const json = JSON.stringify({ type: "post" });
+    formData.append("file", file);
+    formData.append("imageRequest", new Blob([json], { type: "application/json" }));    
+
+    try {
+      const response = await imageApi.postImage(formData);
+
+      if (!response.ok) {
+        showToast("이미지 업로드 실패", false, true);
+        return;
+      }
+
+      const result = await response.json();
+      postImage = result.imageUrl;
+     
+      const postImageDo = document.getElementById("post-image");
+      postImageDo.hidden = false;
+      postImageDo.src = postImage;
+
+    } catch (error) {
+      showToast("이미지 업로드 실패", false, true);
+    }
+  });
 }

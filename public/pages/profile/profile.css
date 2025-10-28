@@ -1,13 +1,16 @@
 html, body {
   height: 100%;
-  margin: 0;
-  padding: 0;
-  background-color: rgba(244, 245, 247, 1);
+  width: 100%;
+}
+
+header{
+  width: 100%;
+  justify-self: center;
+  align-items: center;
 }
 
 .container{
     flex-direction: column;
-    display: flex; 
     justify-self: center;
     padding-top: 20px;
     height: 100%;
@@ -18,13 +21,18 @@ html, body {
 #profile-container{
     align-self: center;
     text-align: center;
-    max-width: 100%;
+    background-color: rgba(255, 255, 255, 0.85);
+    border: 1.5px solid #2C3E50;
+    border-radius: 18px;
+    box-shadow: 0 4px 12px rgba(44, 62, 80, 0.15);
+    box-sizing: border-box;
+    width: 100%;
+    padding: 40px 36px;
 }
-
 #profile-title{
     font-family: "Pretendard", sans-serif;
     font-weight: 700;
-    font-size: 32px; 
+    font-size: 28px; 
 }
 
 .image-container{
@@ -95,10 +103,10 @@ html, body {
 }
 
 .button-container{
-  display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   width: 100%;
   gap: 10px;
 }
+

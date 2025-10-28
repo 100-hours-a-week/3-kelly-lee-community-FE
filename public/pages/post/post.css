@@ -1,7 +1,12 @@
 html, body {
   height: 100%;
-  margin: 0;
-  padding: 0;
+  width: 100%;
+}
+
+header{
+  width: 100%;
+  justify-self: center;
+  align-items: center;
 }
 
 .post-container{
@@ -21,8 +26,8 @@ html, body {
 
 .post-title{
     font-family: "Pretendard", sans-serif;
-    font-weight: 700;
-    font-size: 24px; 
+    font-weight: 600;
+    font-size: 18px; 
 }
 
 .title-sub-container{
@@ -45,17 +50,17 @@ html, body {
 }
 
 .profile-image {
-  width: 36px;
-  height: 36px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
-  background-color: rgba(217, 217, 217, 1);
   margin-right: 10px;
+  border: 1px solid #ccc;
 }
 
 .nickname{
     font-family: "Pretendard", sans-serif;
-    font-weight: 700;
-    font-size: 15px; 
+    font-weight: 600;
+    font-size: 12px; 
 }
 
 .info{
@@ -66,16 +71,20 @@ html, body {
 
 .post-update-button{
     border-radius: 5px;
-    border-color: rgba(172, 160, 235, 1);
-    background-color: white;
+    border-color: transparent;
+    background-color: #2E8B77;
+    color: white;
 }
 
 .post-content-container{
     display: flex;
     flex-direction: column;
     gap: 16px;
-    align-items: center; 
     width: 100%;
+}
+
+#post-created-at{
+    text-align: end;
 }
 
 .post-image{
@@ -100,31 +109,6 @@ html, body {
     margin-bottom: 20px;
 }
 
-.count-box{
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    width: 116px;
-    height: 77px;
-    border-radius: 12px;
-    text-align: center;
-    justify-content: center;
-    align-items: center;
-    background-color: rgba(217, 217, 217, 1);
-    border-color: transparent;
-    font-family: "Pretendard", sans-serif;
-    font-weight: 700;
-    font-size: 16px;
-}
-
-.count-box[active]{
-  background-color: #ACA0EB;
-}
-
-.count{
-    font-size: 24px;
-}
-
 .comment-input-box{
   display: flex;
   align-items: flex-start;
@@ -136,6 +120,11 @@ html, body {
   box-sizing: border-box;
   width: 100%;
   gap: 10px;
+}
+
+#comment-submit-button{
+    margin-top: 5px;
+    align-self: flex-end;
 }
 
 .comment-text{
@@ -150,4 +139,29 @@ html, body {
 #comment-container{
     width: 100%;
     max-width: 400px;
+    padding: 20px 0px;
+}
+
+.post-info-container{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.icon{
+    width: 30px;
+    height: 30px;
+}
+
+.counter-box{
+    display: flex; 
+    flex-direction: row;
+    align-items: center;
+    gap: 4px;
+
+    height: fit-content;
+    border-radius: 10px;
+    padding: 3px 5px;
+    box-shadow: 0 2px 5px rgba(44, 62, 80, 0.15);
 }

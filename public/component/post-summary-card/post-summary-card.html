@@ -1,24 +1,26 @@
 <post-summary-info>
     <div class="card">
         <p class="title">__TITLE__</p>
+        <p class="info" >__CREATED_AT__</p>
         <div class="info-container">
+            <div class="profile-container">
+                <img src="" alt="프로필" class="profile-image" id="post-profile-image">
+                <p class="nickname">__NICKNAME__</p>
+            </div>
             <div class="statistics-container">
                 <div class="statistics-block">
-                    <p class="info">좋아요 __LIKE_COUNT__</p>
+                    <img src="../../assets/heart.png" alt="좋아요" class="icon" />
+                    <p class="info">__LIKE_COUNT__</p>
                 </div>
                 <div class="statistics-block">
-                    <p class="info">댓글 __COMMENT_COUNT__</p>
+                    <img src="../../assets/comment.png" alt="댓글" class="icon" id="comment-icon"/>
+                    <p class="info">__COMMENT_COUNT__</p>
                 </div>
                 <div class="statistics-block">
-                    <p class="info">조회수 __VIEW_COUNT__</p>
+                    <img src="../../assets/view.png" alt="댓글" class="icon" id="view-icon"/>
+                    <p class="info">__VIEW_COUNT__</p>
                 </div>
-            </div>
-            <p class="info" >__CREATED_AT__</p>
-        </div>
-        <hr>
-        <div class="profile-container">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Sample_User_Icon.png/480px-Sample_User_Icon.png" alt="프로필" class="profile-image" id="header-profile-image">
-            <p class="nickname">__NICKNAME__</p>
+            </div>         
         </div>
     </div>
 </post-summary-info>

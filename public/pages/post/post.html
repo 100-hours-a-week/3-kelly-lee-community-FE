@@ -13,12 +13,9 @@
         <div class="post-title-container">
             <p class="post-title" id="post-title"">__TITLE__</p>
             <div class="title-sub-container">
-                <div class="post-info-container">
-                    <div class="profile-container">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Sample_User_Icon.png/480px-Sample_User_Icon.png" alt="프로필" class="profile-image" id="header-profile-image">
-                        <p class="nickname" id="poster-nickname">__NICKNAME__</p>
-                    </div>
-                    <p class="info" id="post-created-at">__CREATED_AT__</p>
+                <div class="profile-container">
+                    <img src="" alt="프로필" class="profile-image" id="post-profile-image">
+                    <p class="nickname" id="poster-nickname">__NICKNAME__</p>
                 </div>
                 <div class="post-button-container">
                     <button type="button" class="post-update-button" id="post-modify-button">수정</button>
@@ -28,20 +25,30 @@
         </div>
         <hr>
         <div class="post-content-container">
-            <img src="https://img.freepik.com/free-photo/3d-render-coastal-landscape-sunset-sky_1048-5670.jpg?semt=ais_hybrid&w=740&q=80" alt="프로필" class="post-image" id="header-profile-image">
-            <p class="content" id="post-content">pneumonoultramicroscopicsilicovolcanoconiosispneumonoultramicroscopicsilicovolcanoconiosispneumonoultramicroscopicsilicovolcanoconiosispneumonoultramicroscopicsilicovolcanoconiosispneumonoultramicroscopicsilicovolcanoconiosispneumonoultramicroscopicsilicovolcanoconiosispneumonoultramicroscopicsilicovolcanoconiosispneumonoultramicroscopicsilicovolcanoconiosispneumonoultramicroscopicsilicovolcanoconiosispneumonoultramicroscopicsilicovolcanoconiosispneumonoultramicroscopicsilicovolcanoconiosispneumonoultramicroscopicsilicovolcanoconiosis</p>
+            <img src="" alt="프로필" class="post-content-image" id="post-content-image">
+            <p class="content" id="post-content"></p>           
         </div>
-        <div class="post-count-container">
-            <button type="button" class="count-box" id="post-like"><span class="count" id="like-count">__LIKE_COUNT__</span>좋아요</button>
-            <div class="count-box" id="post-view" ><span class="count" id="view-count">__VIEW_COUNT__</span>조회수</div>
-            <div class="count-box" id="post-comment" ><span class="count" id="comment-count">__COMMENT_COUNT__</span>댓글</div>
-        </div>
-        <hr>
+        <div class="post-info-container">
+             <div class="post-count-container">
+                <div class="counter-box" id="like-box">
+                    <img src="../../assets/heart.png" alt="좋아요" class="icon" />
+                    <span class="count" id="post-like"></span>
+                </div>
+                <div class="counter-box" >
+                    <img src="../../assets/comment.png" alt="댓글" class="icon" />
+                    <span class="count" id="post-comment"></span>
+                </div>
+                <div class="counter-box" >
+                    <img src="../../assets/view.png" alt="뷰" class="icon" />
+                    <span class="count" id="post-view"></span>
+                </div>
+            </div>
+            <p class="info" id="post-created-at">__CREATED_AT__</p>
+        </div> 
         <div class="comment-input-box">
             <textarea class="comment-text" id="comment-text" placeholder="댓글을 남겨주세요"></textarea>
-            <hr>
-            <div id="comment-submit-button" >댓글 등록</div>
         </div>
+        <div id="comment-submit-button" >댓글 등록</div>
         <div id="comment-container">
         </div>
         <div id="dialog"></div>

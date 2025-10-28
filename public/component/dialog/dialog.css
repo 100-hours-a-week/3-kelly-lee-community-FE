@@ -5,6 +5,8 @@ dialog{
     border-color: transparent;
     align-content: center;
     justify-content: center;
+    padding: 20px 10px;
+    box-sizing: border-box;
 }
 
 dialog::backdrop {
@@ -13,24 +15,26 @@ dialog::backdrop {
   z-index: 1000;
 }
 
-
 .dialog-container{
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 20px;
 }
 
 .dialog-title{
     font-family: "Pretendard", sans-serif;
-    font-weight: 700;
+    font-weight: 600;
     font-size: 24px; 
+    margin: 0;  
 }
 
 .dialog-sub-title{
     font-family: "Pretendard", sans-serif;
     font-weight: 400;
     font-size: 20px; 
+    margin: 0;  
 }
 
 .dialog-button-container{
@@ -38,12 +42,14 @@ dialog::backdrop {
     display: flex;
     flex-direction: row;
     justify-self:center;
+    justify-content: space-between; 
     gap: 5px;
 }
 
 .dialog-button{
     width: 100%;
-    max-width: 127;
+    max-width: 127px;
+    min-height: 30px;
     border-radius: 5px;
     border-color: transparent;
 }
@@ -55,5 +61,6 @@ dialog::backdrop {
 
 
 #confirm-button{
-    background-color: rgba(196, 165, 250, 1);
+    background-color: #2C3E50;
+    color: white;
 }

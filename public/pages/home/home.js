@@ -37,6 +37,7 @@ function addEventListenerToPostButton(){
 
 }
 
+
 function addEventListenerToScroll(){
   window.addEventListener("scroll", async () => {
     if (fetchComplete || isLoading) return;
@@ -108,7 +109,18 @@ async function renderPost(posts){
     wrapper.dataset.postId = post.postBasic.id;
     wrapper.dataset.userId = post.poster.userId;
 
+
     const card = document.getElementById(wrapper.id);
+    const profileImg = card.querySelector("#post-profile-image");
+    if (profileImg) {
+      if (post.poster.imageUrl) {
+        profileImg.src = post.poster.imageUrl;
+      } else {
+        profileImg.src = "https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Sample_User_Icon.png/480px-Sample_User_Icon.png";
+      }
+    }
+
+    
     card.addEventListener("click", ()=>{
       location.href = `/pages/post/post.html?postId=${card.dataset.postId}`;
     });

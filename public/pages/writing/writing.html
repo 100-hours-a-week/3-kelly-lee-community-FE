@@ -20,14 +20,16 @@
             <div class="input-container">
                 <p class="sub-title">내용*</p>
                 <textarea class="text-area" id="content-text" style="min-height: 200px;" placeholder="내용을 입력해주세요." type="text"></textarea>
-                <span class="helper-text" id="content-helper-text">*내용을 입력해주세요.</span>
+                <span class="helper-text" id="content-helper-text">.</span>
             </div>
              <div class="input-container">
                 <p class="sub-title">이미지</p>
-                <div class="image-button-container">
-                    <label for="file-input" class="file-label">파일 선택</label>
-                    <input type="file" id="file-input" hidden />
-                    <p id="file-name">파일을 선택해주세요.</p>
+                <div class="image-input-box">
+                    <img src="" alt="게시물" class="post-image" id="post-image" hidden>
+                    <div class="image-button-container">
+                        <label for="file-input" class="file-label" id="postImage">파일 선택</label>
+                        <input type="file" id="file-input" accept="image/*" hidden />
+                    </div>
                 </div>
                 
             </div>

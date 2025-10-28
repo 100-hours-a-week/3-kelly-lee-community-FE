@@ -15,3 +15,15 @@ export async function api(url, options = {}) {
   const response = await fetch(url, mergedOptions);
   return response;
 }
+
+export async function multipartApi(url, options = {}) {
+    
+  
+  const mergedOptions = {
+    ...options,
+    headers: { ...(options.headers || {}) },
+  };
+
+  const response = await fetch(url, mergedOptions);
+  return response;
+}

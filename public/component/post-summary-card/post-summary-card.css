@@ -1,67 +1,74 @@
 .card{
     background-color: white;
-    border-radius: 16px;
+    border: 1px solid #2C3E50;
+    box-shadow: 0 4px 12px rgba(44, 62, 80, 0.15);
+    border-radius: 18px;
+    margin: 10px 0;
+    box-sizing: border-box;
+    padding: 10px 20px;
 }
 
 .title{
     font-family: "Pretendard", sans-serif;    
-    font-weight: 700;
-    font-size: 24px;  
-    padding-left: 20px;
-    padding-right: 20px;
-    padding-top: 10px;
+    font-weight: 600;
+    font-size: 18px;  
+    
 }
 
 .info-container{
     display: flex;
     flex-direction: row;
-    padding-left: 20px;
-    padding-right: 20px;
     justify-content: space-between;
 }
 
-.info-block{
-    padding-right: 10px;
-    
+.icon {
+  width: 20px;
+  height: 20px;
 }
 
 .statistics-container{
     display: flex;
     flex-direction: row;
     justify-content: stretch;
+
 }
 
 .statistics-block{
     padding-right: 10px;
+    align-items: center;
     display: flex;
     gap: 4px;
 }
 
 .info{
     font-family: "Pretendard", sans-serif;    
-    font-weight: 400;
+    font-weight: 500;
     font-size: 14px;  
 }
 
 .profile-container{
     display: flex;
     flex-direction: row;
-    padding-left: 20px;
-    padding-right: 20px;
-    padding-bottom: 10px;
     align-items: center;
+    justify-content: end;
 }
 
 .profile-image {
-  width: 36px;
-  height: 36px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   background-color: rgba(217, 217, 217, 1);
   margin-right: 10px;
+  border: 1px solid #ccc;
+}
+
+#comment-icon{
+    width: 35px;
+    height: 35px;
 }
 
 .nickname{
     font-family: "Pretendard", sans-serif;    
-    font-weight: 700;
-    font-size: 15px;  
+    font-weight: 600;
+    font-size: 12px;  
 }

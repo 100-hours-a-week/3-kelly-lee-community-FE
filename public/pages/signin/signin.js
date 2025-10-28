@@ -9,17 +9,14 @@ let email;
 let emailHelperText;
 
 let password;
-let passwordHelperText;
-
 let signinBtn;
 
 const emailPattern = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-za-z0-9\-]+/;
-const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>])[A-Za-z\d!@#$%^&*(),.?":{}|<>]{8,20}$/;
 
 document.addEventListener("DOMContentLoaded", async () => {
 
   await componentLoader("header","/component/header/header", true, true, null);
-  renderHeader({ back: false, profile: false });
+  renderHeader({ back: false, profile: false,title: false });
 
   await componentLoader("email", "/component/input-form/input-form", true, false,{
     id: "email",
@@ -40,7 +37,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     helper: "*비밀번호를 입력하세요.",
   });
   password = document.querySelector("#password input");
-  passwordHelperText = document.querySelector("#password .helper-text");
 
   await componentLoader("signin-button", "/component/button/main-button/main-button", true, false, {
     text: "로그인"
@@ -57,42 +53,50 @@ document.addEventListener("DOMContentLoaded", async () => {
   addEventListenerTpSignInButton();
   addEventListenerToSignUpButton();
 
+  document.addEventListener("keydown", async (event) => {
+    if (event.key === "Enter" && !signinBtn.disabled) {
+      event.preventDefault();
+      signinBtn.click();
+    }
+  });
+
 });
 
 function addEventListenerToEmail(){
-
   email.addEventListener("input", () => {
- 
     if(!email.value || email.value.trim().length === 0){
-      emailHelperText.textContent = "이메일을 입력하세요.";
+      email.classList.remove("valid");
+      emailHelperText.style.visibility = "visiblie";
+      emailHelperText.textContent = "* 이메일을 입력하세요.";
       emailCheck = false;
       return;
     }else if(!emailPattern.test(email.value)){
-      emailHelperText.textContent = "* 올바른 이메일 주소 형식을 입력해주세요. (예: example@example.com)";
+     email.classList.remove("valid");
+      emailHelperText.style.visibility = "visiblie";
+      emailHelperText.textContent = "* 올바른 이메일 주소 형식을 입력해주세요.";
       emailCheck = false;
       return;
     }else{
       emailCheck = true;
-      emailHelperText.textContent = "";
-    }
+      email.classList.add("valid");
+      emailHelperText.style.visibility = "hidden";
 
+    }
     updateSigninButtonState();
   });
 }
 
 function addEventListenerToPassword(){
+  document.querySelector("#password .helper-text").textContent = "";
+
   password.addEventListener("input", () => { 
 
     if(!password.value || password.value.trim().length === 0) {
       passwordCheck = false;
-      passwordHelperText.textContent = "*비밀번호를 입력하세요.";
-    }else if(!passwordPattern.test(password.value)){
-      passwordHelperText.textContent = "*비밀번호는 8자 이상, 20자 이하이며, 대문자, 소문자, 숫자, 특수문자를 각각 최소 1개 포함해야합니다.";
-      passwordCheck = false;
-    }else{
-      passwordCheck = true;
-      passwordHelperText.textContent = "";
-      
+      password.classList.remove("valid");    
+    }else {
+      passwordCheck = true;  
+      password.classList.add("valid");    
     }
     updateSigninButtonState();
   });
