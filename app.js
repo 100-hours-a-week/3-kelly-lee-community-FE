@@ -4,6 +4,16 @@ const app = express();
 
 const port = 3000;
 
+require('dotenv').config();
+
+app.get('/config.js', (req, res) => {
+  res.type('application/javascript');
+  res.send(`window.__CONFIG__ = {
+    API_BASE_URL: "${process.env.API_BASE_URL}"
+  };`);
+});
+
+
 app.use(express.static('public'));
 
 app.get('/', (req, res) => {

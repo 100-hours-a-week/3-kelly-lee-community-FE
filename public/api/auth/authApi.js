@@ -1,8 +1,6 @@
 import { api } from "/api/api.js";
-import dotenv from 'dotenv';
-dotenv.config();
 
-const baseUrl = process.env.API_BASE_URL;
+const baseUrl = window.__CONFIG__.API_BASE_URL;
 const baseAuthUrl = baseUrl+"/auth";
 
 export const authApi = {
