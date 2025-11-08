@@ -1,6 +1,9 @@
 import { multipartApi } from "/api/api.js";
+import dotenv from 'dotenv';
+dotenv.config();
 
-const baseImageUrl = "http://localhost:8080/images";
+const baseUrl = process.env.API_BASE_URL;
+const baseImageUrl = baseUrl+"/images";
 
 export const imageApi = {
 

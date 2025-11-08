@@ -1,6 +1,9 @@
 import { api } from "/api/api.js";
+import dotenv from 'dotenv';
+dotenv.config();
 
-const baseMemberUrl = "http://localhost:8080/members";
+const baseUrl = process.env.API_BASE_URL;
+const baseMemberUrl = baseUrl+"/members";
 
 export const memberApi = {
     signup: (data) =>

@@ -1,6 +1,9 @@
 import { api } from "/api/api.js";
+import dotenv from 'dotenv';
+dotenv.config();
 
-const basePostUrl = "http://localhost:8080/posts/";
+const baseUrl = process.env.API_BASE_URL;
+const basePostUrl = baseUrl+"/posts/";
 const baseCommentUrl = "/comments";
 
 export const commentApi = {

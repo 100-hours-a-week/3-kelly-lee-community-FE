@@ -1,6 +1,9 @@
 import { api } from "/api/api.js";
+import dotenv from 'dotenv';
+dotenv.config();
 
-const baseAuthUrl = "http://localhost:8080/auth";
+const baseUrl = process.env.API_BASE_URL;
+const baseAuthUrl = baseUrl+"/auth";
 
 export const authApi = {
   login: (data) =>
