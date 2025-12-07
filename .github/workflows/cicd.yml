@@ -101,6 +101,7 @@ jobs:
             sudo apt-get install -y nodejs
           EOF
       
+      
       - name: Deploy to EC2
         run: |
           ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} << 'EOF'
@@ -109,7 +110,7 @@ jobs:
             docker stop community-fe || true
             docker rm community-fe || true
             docker run -d \
-              -e API_BASE_URL=${{ secrets.API_BASE_URL }} \
+              --env-file /home/ubuntu/community-fe.env \
               -p 3000:3000 \
               --name community-fe \
               ${{ secrets.DOCKER_USERNAME }}/community-fe:latest
