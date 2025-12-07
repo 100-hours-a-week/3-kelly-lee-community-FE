@@ -109,6 +109,7 @@ jobs:
             docker stop community-fe || true
             docker rm community-fe || true
             docker run -d \
+              -e API_BASE_URL=${{ secrets.API_BASE_URL }} \
               -p 3000:3000 \
               --name community-fe \
               ${{ secrets.DOCKER_USERNAME }}/community-fe:latest
